@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+{% if session['logged_in'] %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+        <div style = "position:relative; border:solid;
+            background-color:gray"
+            <p>{{msg}}</p>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<!-- Bootstrap -->
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <div class="has-bg-img">
+
+	{% if data %}
+	<h3>{{data}}</h3>
+	{% else %}
+
+	<a href="/logout">Logout</a> <br> <br>
+	<a href="/accountdetails"> Account Details</a> <br>
+	{% endif %}
+    <ul></ul>
+    <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" 
+        class="bg-img" alt="image">
+    </div>
+    
+    {% else %}
+
+
+<!doctype html>
+<!-- Bootstrap -->
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <div class="has-bg-img bg-purple bg-blend-multiply">
+        <p>Please login or create an account</p>
+
+        <a href="/login">
+            <button>Login</button>
+        </a>
+
+        <a href="/register">
+            <button>Register</button>
+        </a>
+ 
+    </div>
+
+    <ul></ul>
+    <img src="https://img5.goodfon.com/original/1920x1080/b/e2/welcome-home-welcome-home-de.jpg" class="img-fluid" alt="...">
+
+
+</head>
+</html>
+{% endif %}
+{% endblock %}
