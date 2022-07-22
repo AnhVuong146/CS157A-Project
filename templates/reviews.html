@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <a href="/">
+        <button>Go home</button>
+    </a>
+    <h1 style="text-align:center;">We'd love to hear from you</h1>
+</head>
+
+<form action="" id="survey-form">
+
+    <div class="form-group">
+        <p id="quest">How would you rate our website?</p>
+        <select name="role" required id="dropdown" class="formControl">
+            <option value disabled selected >Rating</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+
+<body>
+    <h2 style="text-align:center;">Add a Review</h1>
+        <form action="/reviews" method="POST">
+            <ul></ul>
+            <textarea type="review"  name="review" cols="30" rows="5" placeholder="Type a review"></textarea>
+            <a href="/reviews">
+                <input type="submit" value="submit">
+            </a>
+            
+        </form>
+ 
+    {% for review in review_list %}
+                    
+    <li>{{review.username}} wrote {{review.review}}</li>
+
+    {% endfor %}
+
+
+
+</body>
+{% endblock %}

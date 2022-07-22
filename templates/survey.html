@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+{% if session['logged_in'] %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="form.css">
+    <title>Survey Form</title>
+</head>
+<body>
+    <div class="container ">
+        <header class="header">
+            <h1 id="title">
+                Survey from JAM Todo List
+            </h1>
+            <p id="description">
+                Please take this survey to tell us about your experience with our web application
+            </p>
+        </header>
+
+    </div>
+
+    <h2>Link to survey below:</h2>
+    <a href="/reviews">
+        <button> Take a survey</button>
+    </a>
+
+</body>
+</html>
+
+{% endif %}
+{% endblock %}
