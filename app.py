@@ -38,6 +38,42 @@ class Todo(db.Model):
     title = db.Column(db.String(100))
     complete = db.Column(db.Boolean)
     
+    def __init__(self, title, complete):
+        self.title = title
+        self.complete = complete
+    
+class reviews_table_test(db.Model):
+    review_number = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), db.ForeignKey('user.username'))
+    itemID = db.Column(db.Integer)
+    review = db.Column(db.Text)
+
+    def init(self, username, review):
+        self.username = username
+        self.review = review
+             
+#this is the database for user reviews
+reviews_list = []
+crsruser.execute("SELECT username FROM reviews_table_test")
+crsrid.execute("SELECT itemID FROM reviews_table_test")
+crsrreview.execute("SELECT review FROM reviews_table_test")
+rowuser = crsruser.fetchone()
+rowid = crsrid.fetchone()
+rowreview = crsrreview.fetchone()
+while rowreview is not None:
+    rowuser = " ".join(str(x) for x in rowuser)
+    rowid = " ".join(str(x) for x in rowid)
+    rowreview = " ".join(str(x) for x in rowreview)
+    print(rowuser, rowid, rowreview)
+    new_review = reviews_table_test(
+        username = rowuser,
+        itemID = rowid,
+        review = rowreview)
+    reviews_list.append(new_review)   
+    rowuser = crsruser.fetchone()
+    rowid = crsrid.fetchone()
+    rowreview = crsrreview.fetchone()
+        
     
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -119,6 +155,31 @@ def delete(todo_id):
     db.session.delete(todo)
     db.session.commit()
     return redirect(url_for("task"))
+
+@app.route("/survey", methods=['GET', 'POST'])
+def survvey():
+    tempUser = session['username']
+    if request.method == 'POST':
+        new_review = reviews_table_test(
+            username = tempUser,
+            review = request.form['review'])
+        reviews_list.append(new_review)   
+        db.session.add(new_review)
+        db.session.commit()
+    return render_template('survey.html', IdNum = id, review_list = reviews_list)
+    
+
+@app.route("/reviews", methods=['GET', 'POST'])
+def reviews():
+    tempUser = session['username']
+    if request.method == 'POST':
+        new_review = reviews_table_test(
+            username = tempUser,
+            review = request.form['review'])
+        reviews_list.append(new_review)   
+        db.session.add(new_review)
+        db.session.commit()
+    return render_template('reviews.html', review_list = reviews_list)
  
 if __name__ == '__main__':
     app.debug = True
