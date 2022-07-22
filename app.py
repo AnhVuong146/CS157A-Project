@@ -181,6 +181,33 @@ def reviews():
         db.session.commit()
     return render_template('reviews.html', review_list = reviews_list)
  
+ 
+@app.route("/userprofile", methods=['GET', 'POST'])
+def accountdetails():
+     return render_template('userprofile.html')
+ 
+@app.route("/changepassword", methods=['GET', 'POST'])
+def changepassword():
+    tempuser = session['username']
+    temppuser = User.query.filter_by(username = tempuser).first()
+    tempid = temppuser.id
+    temppass = temppuser.password
+    print(tempuser)
+    print(tempid)
+    if request.method == 'POST':
+        password=request.form['password']
+        temppuser.password =request.form['newpassword']
+        if password == temppass:
+            db.session.commit()
+            flash('Your password has been updated!')
+            return render_template('index.html')
+        else:
+            flash('You entered an incorrect password')
+            return render_template('changepassword.html')
+    return render_template('changepassword.html')
+ 
+ 
+
 if __name__ == '__main__':
     app.debug = True
     db.create_all()
