@@ -4,4 +4,9 @@
 - Anh Vuong, Jonathan Borda, Minh Nguyen
 - Virtual Meeting (Discord)
 - Project Proposal
+
+### 2022-07-31 at 21:00
+- Anh Vuong, Jonathan Borda, Minh Nguyen
+- Virtual Meeting (Discord)
+- Project database and final results
   
