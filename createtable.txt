@@ -21,6 +21,7 @@ CREATE TABLE `ToDOlist` (
     PRIMARY KEY (`ToDOListID`)
 );
 
+
 CREATE TABLE "user" (
 	"id"	INTEGER NOT NULL,
 	"username"	VARCHAR(80),
@@ -28,6 +29,11 @@ CREATE TABLE "user" (
 	PRIMARY KEY("id"),
 	UNIQUE("username")
 );
+
+insert into "user" values (1,'123','123');
+insert into "user" values (2,'anhvuong146','anhvuong1462000');
+insert into "user" values (3,'123456','123456');
+insert into "user" values (4,'hi','hello');
 
 CREATE TABLE `Register` (
     `UserID` VARCHAR(3) NOT NULL,
@@ -41,12 +47,17 @@ CREATE TABLE `Login` (
     `Password` VARCHAR(40) NOT NULL
 );
 
-CREATE TABLE `Survey` (
-    `AnswerID` VARCHAR(3) NOT NULL,
-    `SurveyID` VARCHAR(3) NOT NULL,
-    `QuestionID` VARCHAR(3) NOT NULL,
-    PRIMARY KEY (`AnswerID`,`SurveyID`,`QuestionID`)
+CREATE TABLE survey (
+	review_number INTEGER NOT NULL, 
+	username VARCHAR(80), 
+	"itemID" INTEGER, 
+	review varchar(500), 
+	PRIMARY KEY (review_number), 
+	FOREIGN KEY(username) REFERENCES "user" ("username")
 );
+
+insert into survey values (1,'anhvuong146', NULL, 'i loved it');
+insert into survey values (2,'hi', NULL,'Wow amazing web app');
 
 CREATE TABLE `Questions` (
     `QuestionID` VARCHAR(3) NOT NULL,
