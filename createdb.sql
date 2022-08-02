@@ -14,12 +14,15 @@ CREATE TABLE `Category` (
     PRIMARY KEY (`UserID`,`CategoryID`)
 );
 
-CREATE TABLE `ToDOlist` (
-    `ToDOListID` INT NOT NULL,
-    title varchar (100) 
-    complete boolean
-    PRIMARY KEY (`ToDOListID`)
+CREATE TABLE todo (
+	id INTEGER NOT NULL, 
+	title VARCHAR(100), 
+	complete INT, 
+	PRIMARY KEY (id)
 );
+
+insert into todo values(1,'make the bed',0);
+insert into todo values(2,'groceries shopping',0);
 
 
 CREATE TABLE "user" (
@@ -34,6 +37,7 @@ insert into "user" values (1,'123','123');
 insert into "user" values (2,'anhvuong146','anhvuong1462000');
 insert into "user" values (3,'123456','123456');
 insert into "user" values (4,'hi','hello');
+insert into "user" values (5,'test', 'pass');
 
 CREATE TABLE `Register` (
     `UserID` VARCHAR(3) NOT NULL,
@@ -50,14 +54,14 @@ CREATE TABLE `Login` (
 CREATE TABLE survey (
 	review_number INTEGER NOT NULL, 
 	username VARCHAR(80), 
-	"itemID" INTEGER, 
-	review varchar(500), 
+	review varchar(80), 
 	PRIMARY KEY (review_number), 
 	FOREIGN KEY(username) REFERENCES "user" ("username")
 );
 
-insert into survey values (1,'anhvuong146', NULL, 'i loved it');
-insert into survey values (2,'hi', NULL,'Wow amazing web app');
+insert into survey values (1,'anhvuong146', 'i loved it');
+insert into survey values (2,'hi','Wow amazing web app');
+insert into survey values (3,'test', 'Great Website');
 
 CREATE TABLE `Questions` (
     `QuestionID` VARCHAR(3) NOT NULL,
