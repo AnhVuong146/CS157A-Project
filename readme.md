@@ -11,7 +11,7 @@ How to set up the project:
 
 5. If you're running on Visual Studio Code, clone the git project
 6. Open the project on Visual Studio Code
-7. Run the app using Python 3.9.10 GLOBAL
+7. Run the app.py using Python 3.9.10 GLOBAL
 8. Click the local host link that appears in terminal below
 
 Function requirements:
