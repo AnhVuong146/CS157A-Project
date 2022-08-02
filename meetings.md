@@ -10,3 +10,7 @@
 - Virtual Meeting (Discord)
 - Project database and final results
   
+### 2022-08-01 at 18:00
+- Anh Vuong, Jonathan Borda, Minh Nguyen
+- Virtual Meeting (Discord)
+- Project slides and Presentation
