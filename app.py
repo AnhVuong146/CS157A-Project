@@ -45,7 +45,6 @@ class Todo(db.Model):
 class reviews_table_test(db.Model):
     review_number = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), db.ForeignKey('user.username'))
-    itemID = db.Column(db.Integer)
     review = db.Column(db.Text)
 
     def init(self, username, review):
@@ -55,23 +54,18 @@ class reviews_table_test(db.Model):
 #this is the database for user reviews
 reviews_list = []
 crsruser.execute("SELECT username FROM reviews_table_test")
-crsrid.execute("SELECT itemID FROM reviews_table_test")
 crsrreview.execute("SELECT review FROM reviews_table_test")
 rowuser = crsruser.fetchone()
-rowid = crsrid.fetchone()
 rowreview = crsrreview.fetchone()
 while rowreview is not None:
     rowuser = " ".join(str(x) for x in rowuser)
-    rowid = " ".join(str(x) for x in rowid)
     rowreview = " ".join(str(x) for x in rowreview)
-    print(rowuser, rowid, rowreview)
+    print(rowuser, rowreview)
     new_review = reviews_table_test(
         username = rowuser,
-        itemID = rowid,
         review = rowreview)
     reviews_list.append(new_review)   
     rowuser = crsruser.fetchone()
-    rowid = crsrid.fetchone()
     rowreview = crsrreview.fetchone()
         
     
